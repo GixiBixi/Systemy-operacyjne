@@ -24,11 +24,6 @@ int main(void)
                 perror("fork error");
                 exit(EXIT_FAILURE);
             case 0:
-                /* Potomek śpi długo – rodzic zdąży zakończyć się wcześniej.
-                 * Po zakończeniu rodzica, potomek zostanie adoptowany przez
-                 * init (PID=1) lub systemd (PID może być > 1).
-                 * Sprawdź to poleceniem:  pstree -p
-                 */
                 sleep(10);
                 print_ids("POTOMEK (po uśpieniu – sprawdź PPID)");
                 _exit(0);
@@ -37,7 +32,6 @@ int main(void)
         }
     }
 
-    /* Rodzic kończy się natychmiast – nie czeka (brak wait) */
     print_ids("RODZIC (kończy się)");
     return 0;
 }

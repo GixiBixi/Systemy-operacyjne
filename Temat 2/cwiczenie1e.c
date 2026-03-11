@@ -23,7 +23,6 @@ int main(void)
                 perror("fork error");
                 exit(EXIT_FAILURE);
             case 0: {
-                /* Potomek staje się liderem własnej grupy procesów */
                 if (setpgid(0, 0) == -1) {
                     perror("setpgid error");
                     _exit(EXIT_FAILURE);
@@ -31,7 +30,6 @@ int main(void)
                 char label[32];
                 snprintf(label, sizeof(label), "POTOMEK %d", i + 1);
                 print_ids(label);
-                /* PGID potomka == jego własny PID */
                 _exit(0);
             }
             default:
@@ -39,7 +37,6 @@ int main(void)
         }
     }
 
-    /* Czekaj na wszystkie procesy potomne */
     int status;
     while (wait(&status) > 0)
         ;

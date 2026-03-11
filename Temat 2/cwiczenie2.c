@@ -13,26 +13,33 @@ void print_ids(const char *label)
     fflush(stdout);
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    int i;
-    pid_t pid;
+    if (argc < 2) {
+        fprintf(stderr, "Użycie: %s <ścieżka_do_child_printer>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    const char *child_prog = argv[1];
 
     print_ids("RODZIC (przed fork)");
 
-    for (i = 0; i < 3; i++) {
-        pid = fork();
-        switch (pid) {
+    for (int i = 0; i < 3; i++) {
+        switch (fork()) {
             case -1:
                 perror("fork error");
                 exit(EXIT_FAILURE);
-            case 0:
-                {
-                    char label[32];
-                    snprintf(label, sizeof(label), "POTOMEK %d", i + 1);
-                    print_ids(label);
-                    _exit(0);
-                }
+
+            case 0: {
+                char label[32];
+                snprintf(label, sizeof(label), "POTOMEK_%d", i + 1);
+
+                execlp(child_prog, child_prog, label, (char *)NULL);
+
+                perror("execlp error");
+                _exit(EXIT_FAILURE);
+            }
+
             default:
                 break;
         }
