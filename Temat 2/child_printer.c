@@ -12,3 +12,7 @@ int main(int argc, char *argv[])
     fflush(stdout);
     return 0;
 }
+
+// Program robi tylko dwie rzeczy
+// - odbiera etykiete jako argument (np. "POTOMEK 1")
+// - wypisuje identyfikatory procesu

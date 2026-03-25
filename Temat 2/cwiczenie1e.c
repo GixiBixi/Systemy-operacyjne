@@ -1,3 +1,11 @@
+/*
+Jak w (b), tylko przy uzyciu fukcji setpgid sprawic by kazdy proces potomny
+stawac sie liderem swojej wlasnej grupy procesów.
+Ile procesów powstanie przy n-krotnym wywo#aniu funkcji fork i dlaczego?
+*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -23,7 +31,8 @@ int main(void)
                 perror("fork error");
                 exit(EXIT_FAILURE);
             case 0: {
-                if (setpgid(0, 0) == -1) {
+                if (setpgid(0, 0) == -1) { //setpig(0,0) pierwsze zero dotyczy biezacego procesu(potomka), drugie zero -> ustaw PGID rowny jego własnemu PID staje sie liderem nowej grupy
+                    //efekt jest taki że każdy potomek ma własną grupe procesów, oddzieloną od rodzica, widac to w wynikach -PGID potomka == jego wlasny PID
                     perror("setpgid error");
                     _exit(EXIT_FAILURE);
                 }
