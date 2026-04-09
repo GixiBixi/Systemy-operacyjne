@@ -1,12 +1,6 @@
 #define _GNU_SOURCE
 #define _POSIX_C_SOURCE 200112L
  
-/*
- * ex3b.c – implementacja modulu cwiczenia 3b
- *
- * Autor: Wieslaw Placzek (materialy dydaktyczne), 2025
- */
- 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
