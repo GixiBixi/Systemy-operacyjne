@@ -3,7 +3,7 @@ Temat 4: Potoki
 Gabriela Stanek
 ===========================================================
 
-Zadanie 4
+ZADANIE:
 -------------
 Problem "Producenta i Konsumenta"
 
@@ -23,15 +23,15 @@ ex5_producer.c - Cwiczenie 5: Producent dla potoku FIFO
 ex5_consumer.c - Cwiczenie 5: Konsument dla potoku FIFO
 ex5a_main.c - Cwiczenie 5(a): FIFO tworzony w programie, fork
 Makefile - kompilacja i uruchamianie
-README - ten plik
+README
 
 
-KOMPILACJA
+KOMPILACJA:
 ----------
 make
 
 
-URUCHOMIENIE
+URUCHOMIENIE:
 ------------
 Cwiczenie 4:
 make run4
@@ -43,6 +43,6 @@ Cwiczenie 5(b):
 make run5b
 
 
-CZYSZCZENIE
+CZYSZCZENIE:
 -----------
 make clean
