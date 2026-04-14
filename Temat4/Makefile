@@ -64,11 +64,7 @@ run5a: ex5a $(INPUT)
 	@echo ""
 	@echo ">>> Porownanie plikow <<<"
 	diff -s $(INPUT) $(OUTPUT5A)
- 
-# ------------------------------------------------------------------ #
-# Uruchomienie cwiczenia 5(b) - niezalezne procesy w osobnych oknach #
-# Wymaga srodowiska graficznego z xterm.                             #
-# ------------------------------------------------------------------ #
+
 run5b: ex5_producer ex5_consumer $(INPUT)
 	@echo ""
 	@echo ">>> Uruchamiam Cwiczenie 5(b): FIFO, niezalezne procesy <<<"
@@ -79,10 +75,7 @@ run5b: ex5_producer ex5_consumer $(INPUT)
 	@echo "Uruchomiono dwa okna xterm. Poczekaj na zakonczenie obu procesow."
 	@echo "Nastepnie sprawdz: diff -s $(INPUT) $(OUTPUT5)"
 	@echo "Potok FIFO mozna usunac recznie: rm -f $(FIFO)"
- 
-# ------------------------------------------------------------------ #
-# Sprzatanie                                                          #
-# ------------------------------------------------------------------ #
+
 clean:
 	rm -f *.o ex4 ex5_producer ex5_consumer ex5a
 	rm -f $(OUTPUT4) $(OUTPUT5) $(OUTPUT5A)
