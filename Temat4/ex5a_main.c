@@ -8,14 +8,14 @@
 #include <time.h>
 #include "pipe_utils.h"
 
-#define FIFO_PATH "/tmp/ex5a_fifo"
+#define FIFO_PATH "/tmp/ex5a_fifo" // stała ścieżka do pliku FIFO
  
-static void usun_fifo(void)
+static void usun_fifo(void)         // funkcja do usunięcia FIFO przy wyjściu
 {
-    if (unlink(FIFO_PATH) < 0)
+    if (unlink(FIFO_PATH) < 0)      // usuń plik FIFO z systemu
         perror("atexit: unlink (FIFO)");
     else
-        printf("[atexit] Potok FIFO '%s' usuniety.\n", FIFO_PATH);
+        printf("[atexit] Potok FIFO usuniety.\n");
 }
 
 static void producent(const char *src_path)
@@ -105,10 +105,11 @@ int main(int argc, char *argv[])
     printf("Zrodlo: %s  ->  Cel: %s\n", argv[1], argv[2]);
     printf("FIFO: %s\n\n", FIFO_PATH);
 
-    if (mkfifo(FIFO_PATH, 0644) < 0)
+    if (mkfifo(FIFO_PATH, 0644) < 0)  // utwórz plik FIFO (potok nazwany) z prawami rw-r--r--
         die("mkfifo");
 
-    atexit(usun_fifo);
+    atexit(usun_fifo);  // zarejestruj usun_fifo() – zostanie wywołana automatycznie przy exit()
+
  
     pid = fork();
     if (pid < 0)
